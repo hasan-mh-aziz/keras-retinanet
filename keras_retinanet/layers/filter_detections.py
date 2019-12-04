@@ -22,7 +22,7 @@ def filter_detections(
     boxes,
     classification,
     other                 = [],
-    class_specific_filter = True,
+    class_specific_filter = False,
     nms                   = True,
     score_threshold       = 0.05,
     max_detections        = 300,
@@ -79,6 +79,7 @@ def filter_detections(
         # concatenate indices to single tensor
         indices = keras.backend.concatenate(all_indices, axis=0)
     else:
+        print(f"class_specific_filter- {class_specific_filter}")
         scores  = keras.backend.max(classification, axis    = 1)
         labels  = keras.backend.argmax(classification, axis = 1)
         indices = _filter_detections(scores, labels)
@@ -119,7 +120,7 @@ class FilterDetections(keras.layers.Layer):
     def __init__(
         self,
         nms                   = True,
-        class_specific_filter = True,
+        class_specific_filter = False,
         nms_threshold         = 0.5,
         score_threshold       = 0.05,
         max_detections        = 300,

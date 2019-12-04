@@ -51,6 +51,9 @@ from ..utils.model import freeze as freeze_model
 from ..utils.tf_version import check_tf_version
 from ..utils.transform import random_transform_generator
 
+# from keras import backend as K
+# K.clear_session()
+
 
 def makedirs(path):
     # Intended behavior: try to create the directory,
@@ -447,6 +450,7 @@ def main(args=None):
     backbone = models.backbone(args.backbone)
 
     # make sure keras and tensorflow are the minimum required version
+    print(args)
     check_keras_version()
     check_tf_version()
 

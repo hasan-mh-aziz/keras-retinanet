@@ -61,6 +61,8 @@ def backbone(backbone_name):
         from .densenet import DenseNetBackbone as b
     elif 'EfficientNet' in backbone_name:
         from .effnet import EfficientNetBackbone as b
+    elif 'ResNeXt' in backbone_name:
+        from .resnext import ResNeXtBackbone as b
     else:
         raise NotImplementedError('Backbone class for  \'{}\' not implemented.'.format(backbone))
 

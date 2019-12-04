@@ -108,6 +108,7 @@ def resnet_retinanet(num_classes, backbone='resnet50', inputs=None, modifier=Non
     if modifier:
         resnet = modifier(resnet)
 
+    print(resnet.outputs)
     # create the full model
     return retinanet.retinanet(inputs=inputs, num_classes=num_classes, backbone_layers=resnet.outputs[1:], **kwargs)
 
